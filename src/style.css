@@ -94,3 +94,16 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+#play-button {
+  background-color: #646cff;
+  color: #fff;
+  padding: 8px 12px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  z-index: 1;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
