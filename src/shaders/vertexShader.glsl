@@ -1,9 +1,9 @@
-uniform float u_frequencyData[64];
+uniform float u_frequencyData[16];
 uniform int u_radius;
 varying vec3 v_color;
 
 void main() {
-    float unit = float(u_radius * 2) / float(64);
+    float unit = float(u_radius * 2) / float(16);
 
     int index = int( float(position.x + float(u_radius)) / float(unit) );
 
