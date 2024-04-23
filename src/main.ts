@@ -1,7 +1,7 @@
 import "./style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { SoundBackground } from "./soundBackground";
+import { SoundReactiveObject } from "./soundReactiveObject";
 
 const buttonElement = document.querySelector(
   "#play-button"
@@ -15,12 +15,15 @@ const camera = new THREE.PerspectiveCamera(
   1000
 );
 
-const soundBackground = new SoundBackground(camera);
+const soundReactiveObject = new SoundReactiveObject(camera);
 
 const canvas = document.querySelector("#canvas") as HTMLCanvasElement;
 const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
 
-scene.add(soundBackground.getMesh());
+soundReactiveObject.load(
+  "https://p.scdn.co/mp3-preview/632d6c82c76df12239b31e81936f7ca316a3d45b"
+);
+scene.add(soundReactiveObject.getMesh());
 
 camera.position.z = 5;
 
@@ -35,14 +38,12 @@ const animate = function () {
   renderer.render(scene, camera);
   controls.update();
 
-  soundBackground.updateMeshByFrequency();
+  soundReactiveObject.updateMeshByFrequency();
 };
 
 animate();
 
-buttonElement.addEventListener("click", () => soundBackground.togglePlay());
+buttonElement.addEventListener("click", () => soundReactiveObject.togglePlay());
 
-const axisHelper = new THREE.AxesHelper(5);
-scene.add(axisHelper);
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.render(scene, camera);
